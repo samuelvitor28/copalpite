@@ -1,9 +1,8 @@
-package entity;
+package com.copalpite.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 import lombok.Setter;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
-package entity;
+package com.copalpite.entity;
 
-import enums.EGrupo;
+import com.copalpite.enums.EGrupo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
