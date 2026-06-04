@@ -16,6 +16,4 @@ public class Rodada {
 
     @Column(nullable = false)
     private String nome;
-
-    private Integer numero;
 }

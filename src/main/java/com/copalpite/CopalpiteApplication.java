@@ -9,5 +9,4 @@ public class CopalpiteApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CopalpiteApplication.class, args);
 	}
-
 }
