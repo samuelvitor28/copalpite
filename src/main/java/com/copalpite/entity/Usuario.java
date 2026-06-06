@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -35,6 +36,7 @@ public class Usuario {
     @JoinColumn(name = "selecao_torcida_id")
     private Selecao selecaoTorcida;
 
+    @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime criadoEm;
 }
