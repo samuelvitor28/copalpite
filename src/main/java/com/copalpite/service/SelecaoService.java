@@ -13,7 +13,7 @@ public class SelecaoService {
     private final SelecaoRepository selecaoRepository;
 
     public List<Selecao> listarTodas() {
-        return selecaoRepository.findAll();
+        return selecaoRepository.findAllByOrderByNomeAsc();
     }
 
     public Selecao buscarPorId(Long id) {

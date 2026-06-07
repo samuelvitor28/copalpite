@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  background: #0a0a0a;
+}
+
+.dash-root {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0a0a0a;
+  background-image:
+    radial-gradient(ellipse at 10% 30%, rgba(0, 200, 100, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 70%, rgba(0, 200, 100, 0.07) 0%, transparent 50%);
+  font-family: 'DM Sans', sans-serif;
+  color: #fff;
+}
+
+/* ── NAVBAR ── */
+.dash-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 40px;
+  height: 64px;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dash-nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  color: #fff;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.dash-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.dash-nav-btn {
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.dash-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dash-nav-btn--destaque {
+  background: #00c864;
+  color: #0a0a0a;
+  border-color: #00c864;
+  font-weight: 700;
+}
+
+.dash-nav-btn--destaque:hover {
+  background: #00e070;
+  border-color: #00e070;
+  color: #0a0a0a;
+}
+
+.dash-nav-usuario {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.dash-nav-usuario:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dash-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #00c864;
+  color: #0a0a0a;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dash-nav-username {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dash-nav-caret {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.dash-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 160px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  animation: fadeDown 0.15s ease;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dash-dropdown-item {
+  display: block;
+  padding: 11px 16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s;
+}
+
+.dash-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.dash-dropdown-item--sair {
+  color: #ff4d4d;
+}
+
+.dash-dropdown-item--sair:hover {
+  background: rgba(255, 77, 77, 0.08);
+  color: #ff4d4d;
+}
+
+.dash-dropdown-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 4px 0;
+}
+
+/* ── MAIN ── */
+.dash-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.dash-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.dash-card-titulo {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 20px;
+}
+
+/* ── PONTUAÇÃO ── */
+.dash-pontuacao {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  border-color: rgba(0, 200, 100, 0.2);
+  background: rgba(0, 200, 100, 0.04);
+}
+
+.dash-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.dash-pontos-valor {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 88px;
+  line-height: 1;
+  color: #00c864;
+  letter-spacing: 2px;
+}
+
+.dash-pontos-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── RANKING ── */
+.dash-ranking {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.dash-ranking-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dash-ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  transition: background 0.15s;
+}
+
+.dash-ranking-item--eu {
+  border-color: rgba(0, 200, 100, 0.25);
+  background: rgba(0, 200, 100, 0.05);
+}
+
+.dash-ranking-pos {
+  font-size: 16px;
+  width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.dash-ranking-pos--ouro   { color: #FFD700; }
+.dash-ranking-pos--prata  { color: #C0C0C0; }
+.dash-ranking-pos--bronze { color: #CD7F32; }
+
+.dash-ranking-nome {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dash-ranking-pontos {
+  font-size: 13px;
+  font-weight: 600;
+  color: #00c864;
+}
+
+/* ── JOGOS ── */
+.dash-jogos {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.dash-jogos-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dash-jogo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  transition: border-color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+
+.dash-jogo-item:hover {
+  border-color: rgba(0, 200, 100, 0.25);
+  background: rgba(0, 200, 100, 0.03);
+}
+
+.dash-jogo-times {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dash-jogo-time {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.dash-jogo-vs {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dash-jogo-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.dash-jogo-info span {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.dash-jogo-hora {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #00c864 !important;
+}

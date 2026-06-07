@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.cadastro-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0a0a0a;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(0, 200, 100, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(0, 200, 100, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 90%, rgba(0, 180, 80, 0.08) 0%, transparent 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  padding: 40px 16px;
+}
+
+.cadastro-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 48px 40px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.cadastro-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.cadastro-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  letter-spacing: 4px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.cadastro-subtitulo {
+  margin-top: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.3px;
+}
+
+.cadastro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cadastro-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.cadastro-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cadastro-campo label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.cadastro-campo input,
+.cadastro-select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.cadastro-campo input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.cadastro-campo input:focus,
+.cadastro-select:focus {
+  border-color: #00c864;
+}
+
+.cadastro-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+
+.cadastro-select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.cadastro-erro {
+  font-size: 13px;
+  color: #ff4d4d;
+  text-align: center;
+}
+
+.cadastro-btn {
+  margin-top: 4px;
+  padding: 14px;
+  background: #00c864;
+  color: #0a0a0a;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  letter-spacing: 0.3px;
+}
+
+.cadastro-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.cadastro-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cadastro-login {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.cadastro-login a {
+  color: #00c864;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cadastro-login a:hover {
+  text-decoration: underline;
+}
+
+.cadastro-sucesso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.cadastro-sucesso-icone {
+  width: 56px;
+  height: 56px;
+  background: #00c864;
+  color: #0a0a0a;
+  font-size: 28px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cadastro-sucesso h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  letter-spacing: 3px;
+  color: #fff;
+}
+
+.cadastro-sucesso p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 280px;
+}
+
+.cadastro-btn-link {
+  margin-top: 8px;
+  display: inline-block;
+  padding: 12px 32px;
+  background: #00c864;
+  color: #0a0a0a;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.cadastro-btn-link:hover {
+  opacity: 0.9;
+}
