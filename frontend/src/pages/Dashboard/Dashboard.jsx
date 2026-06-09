@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import './Dashboard.css';
 
@@ -36,6 +37,7 @@ function formatarData(dataHora) {
 export default function Dashboard() {
   const [menuAberto, setMenuAberto] = useState(false);
   const [proximosJogos, setProximosJogos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get('/jogos')
@@ -57,8 +59,9 @@ export default function Dashboard() {
         <span className="dash-nav-logo">Copalpite</span>
 
         <nav className="dash-nav-links">
-          <button className="dash-nav-btn dash-nav-btn--destaque">+ Criar bolão</button>
-          <button className="dash-nav-btn">Entrar em bolão</button>
+          <button className="dash-nav-btn dash-nav-btn--destaque" onClick={() => navigate('/boloes/criar')}>+ Criar bolão</button>
+          <button className="dash-nav-btn" onClick={() => navigate('/boloes/entrar')}>Entrar em bolão</button>
+          <button className="dash-nav-btn" onClick={() => navigate('/boloes/meus')}>Meus bolões</button>
           <button className="dash-nav-btn">Adicionar amigo</button>
         </nav>
 
