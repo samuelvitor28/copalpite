@@ -11,5 +11,5 @@ public class BolaoRespostaDTO {
     private String codigoConvite;
     private String donoUsername;
     private int totalParticipantes;
-    private LocalDateTime criadoEm; 
+    private LocalDateTime criadoEm;
 }

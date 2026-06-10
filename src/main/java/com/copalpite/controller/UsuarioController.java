@@ -1,8 +1,10 @@
 // UsuarioController.java
 package com.copalpite.controller;
 
+import com.copalpite.dto.RankingItemDTO;
 import com.copalpite.dto.UsuarioCadastroDTO;
 import com.copalpite.dto.UsuarioRespostaDTO;
+import com.copalpite.repository.PalpiteRepository;
 import com.copalpite.service.usuario.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import java.util.List;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final PalpiteRepository palpiteRepository;
 
     @PostMapping
     public ResponseEntity<UsuarioRespostaDTO> cadastrar(@Valid @RequestBody UsuarioCadastroDTO dto) {
@@ -49,5 +52,14 @@ public class UsuarioController {
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         usuarioService.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/ranking")
+    public ResponseEntity<List<RankingItemDTO>> ranking() {
+        List<Object[]> rows = palpiteRepository.rankingGeral();
+        List<RankingItemDTO> resultado = rows.stream()
+                .map(r -> new RankingItemDTO((Long) r[0], (String) r[1], ((Number) r[2]).longValue()))
+                .toList();
+        return ResponseEntity.ok(resultado);
     }
 }

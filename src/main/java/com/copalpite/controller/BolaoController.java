@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/bolaos")
+@RequestMapping("/api/boloes")
 @RequiredArgsConstructor
 public class BolaoController {
 
@@ -70,5 +70,10 @@ public class BolaoController {
     @GetMapping("/{bolaoId}/ranking")
     public ResponseEntity<List<ParticipanteRespostaDTO>> ranking(@PathVariable Long bolaoId) {
         return ResponseEntity.ok(participanteService.rankingDoBolao(bolaoId));
+    }
+
+    @GetMapping("/meus")
+    public ResponseEntity<List<BolaoRespostaDTO>> meusBoloes(@RequestParam Long usuarioId) {
+        return ResponseEntity.ok(participanteService.meusBoloes(usuarioId));
     }
 }

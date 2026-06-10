@@ -12,4 +12,5 @@ public interface BolaoParticipanteRepository extends JpaRepository<BolaoParticip
     List<BolaoParticipante> findByBolaoId(Long bolaoId);
     Optional<BolaoParticipante> findByBolaoIdAndUsuarioId(Long bolaoId, Long usuarioId);
     boolean existsByBolaoIdAndUsuarioId(Long bolaoId, Long usuarioId);
+    List<BolaoParticipante> findByUsuarioId(Long usuarioId);
 }

@@ -22,11 +22,19 @@ export default function Login() {
     setErro('');
 
     try {
-      const resposta = await api.get(`/usuarios/username/${form.username}`);
+      const resposta = await api.post('/auth/login', {
+        username: form.username,
+        senha: form.senha,
+      });
+
+      localStorage.setItem('token', resposta.data.token);
+      localStorage.setItem('usuarioId', resposta.data.id);
+      localStorage.setItem('username', resposta.data.username);
+
       setToast({ mensagem: `Bem-vindo, ${resposta.data.username}!`, tipo: 'sucesso' });
       setTimeout(() => navigate('/dashboard'), 1500);
     } catch (err) {
-      setErro('Usuário não encontrado ou erro na conexão.');
+      setErro('Usuário ou senha inválidos.');
     } finally {
       setCarregando(false);
     }

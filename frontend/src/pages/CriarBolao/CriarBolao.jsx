@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import Navbar from '../../components/Navbar/Navbar';
-import '../../styles/shared.css';   
 
 export default function CriarBolao() {
   const navigate = useNavigate();
@@ -23,8 +22,8 @@ export default function CriarBolao() {
     setLoading(true);
     setErro('');
     try {
-      const res = await api.post('/bolaos', {...form, donoId: 1});
-      navigate(`/bolaos/${res.data.id}`);
+      const res = await api.post('/boloes', {...form, donoId: 1});
+      navigate(`/boloes/${res.data.id}`);
     } catch {
       setErro('Erro ao criar bolão. Tente novamente.');
     } finally {

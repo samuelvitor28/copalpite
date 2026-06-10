@@ -13,3 +13,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: copalpite-secret-key-minimo-32-caracteres-ok
+  expiration: 86400000

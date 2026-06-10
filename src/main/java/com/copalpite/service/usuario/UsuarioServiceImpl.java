@@ -10,6 +10,7 @@ import com.copalpite.repository.UsuarioRepository;
 import com.copalpite.service.usuario.UsuarioService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final SelecaoRepository selecaoRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
@@ -39,7 +41,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setNome(dto.getNome());
         usuario.setUltimoNome(dto.getUltimoNome());
         usuario.setEmail(dto.getEmail());
-        usuario.setSenha(dto.getSenha()); // ⚠️ hash com BCrypt quando adicionar Spring Security
+        usuario.setSenha(passwordEncoder.encode(dto.getSenha()));
         usuario.setCriadoEm(LocalDateTime.now());
 
         if (dto.getSelecaoTorcidaId() != null) {

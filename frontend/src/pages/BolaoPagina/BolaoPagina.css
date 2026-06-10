@@ -369,3 +369,12 @@
   letter-spacing: 2px;
   color: #00c864;
 }
+
+.bp-bandeira {
+  width: 28px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin: 5px;
+}

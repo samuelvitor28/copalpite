@@ -1,5 +1,6 @@
 package com.copalpite.service.participante;
 
+import com.copalpite.dto.BolaoRespostaDTO;
 import com.copalpite.dto.EntradaBolaoDTO;
 import com.copalpite.dto.ParticipanteRespostaDTO;
 import com.copalpite.entity.Bolao;
@@ -80,5 +81,22 @@ public class BolaoParticipanteServiceImpl implements BolaoParticipanteService {
         dto.setPontuacao(p.getPontuacao());
         dto.setEntradaEm(p.getEntradaEm());
         return dto;
+    }
+
+    @Override
+    public List<BolaoRespostaDTO> meusBoloes(Long usuarioId) {
+        return participanteRepository.findByUsuarioId(usuarioId).stream()
+                .map(p -> {
+                    Bolao b = p.getBolao();
+                    BolaoRespostaDTO dto = new BolaoRespostaDTO();
+                    dto.setId(b.getId());
+                    dto.setNome(b.getNome());
+                    dto.setCodigoConvite(b.getCodigoConvite());
+                    dto.setDonoUsername(b.getDono().getUsername());
+                    dto.setTotalParticipantes(b.getParticipantes() != null ? b.getParticipantes().size() : 0);
+                    dto.setCriadoEm(b.getCriadoEm());
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 }

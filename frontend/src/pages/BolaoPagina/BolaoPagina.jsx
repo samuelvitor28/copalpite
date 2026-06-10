@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import './BolaoPagina.css';
 import '../../index.css';
 
-const USUARIO_ID = 1; // trocar quando tiver JWT
+const USUARIO_ID = Number(localStorage.getItem('usuarioId'));
 
 function codigoParaEmoji(codigo) {
   if (!codigo) return '🏳️';
@@ -222,7 +222,12 @@ export default function BolaoPagina() {
 
                               <div className="bp-jogo-times">
                                 <span className="bp-jogo-time">
-                                  {emojicasa} <span className="bp-jogo-codigo">{codCasa}</span>
+                                  <img
+                                    src={jogo.selecaoCasa?.bandeira}
+                                    alt={codCasa}
+                                    className="bp-bandeira"
+                                  />
+                                  <span className="bp-jogo-codigo">{codCasa}</span>
                                 </span>
 
                                 {aberto ? (
@@ -252,7 +257,12 @@ export default function BolaoPagina() {
                                 )}
 
                                 <span className="bp-jogo-time bp-jogo-time--direita">
-                                  <span className="bp-jogo-codigo">{codVisitante}</span> {emojiVisitante}
+                                  <span className="bp-jogo-codigo">{codVisitante}</span>
+                                  <img
+                                    src={jogo.selecaoVisitante?.bandeira}
+                                    alt={codVisitante}
+                                    className="bp-bandeira"
+                                  />
                                 </span>
                               </div>
 
@@ -283,7 +293,7 @@ export default function BolaoPagina() {
             {ranking.length === 0 && <p className="bp-estado">Nenhum palpite ainda.</p>}
             <ul className="bp-ranking-lista">
               {ranking.map((item, idx) => (
-                <li key={item.usuarioId ?? idx} className={`bp-ranking-item ${item.usuarioId === USUARIO_ID ? 'bp-ranking-item--eu' : ''}`}>
+                <li key={item.usuarioId ?? idx} className={`bp-ranking-item ${item.usuarioId === USUARIO_ID ? 'bp-ranking-item--eu' : ''}`} >
                   <span className={`bp-ranking-pos ${idx === 0 ? 'ouro' : idx === 1 ? 'prata' : idx === 2 ? 'bronze' : ''}`}>
                     {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
                   </span>

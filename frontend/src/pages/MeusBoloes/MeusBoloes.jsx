@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import Navbar from '../../components/Navbar/Navbar';
+import './MeusBoloes.css';
 
 export default function MeusBoloes() {
   const navigate = useNavigate();
@@ -10,12 +11,12 @@ export default function MeusBoloes() {
   const [erro, setErro] = useState('');
 
   useEffect(() => {
-    api.get('/boloes/meus')
+    const usuarioId = localStorage.getItem('usuarioId');
+    api.get(`/boloes/meus?usuarioId=${usuarioId}`)
       .then((res) => setBoloes(res.data))
       .catch(() => setErro('Não foi possível carregar seus bolões.'))
       .finally(() => setLoading(false));
   }, []);
-
   return (
     <div className="page-root">
       <Navbar />

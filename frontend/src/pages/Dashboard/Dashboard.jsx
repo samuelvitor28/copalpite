@@ -3,19 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import './Dashboard.css';
 
-const usuario = {
-  username: 'samuel',
-  pontuacao: 347,
-};
-
-const ranking = [
-  { pos: 1, nome: 'Gabriel', pontos: 412 },
-  { pos: 2, nome: 'Samuel', pontos: 347 },
-  { pos: 3, nome: 'Lucas', pontos: 298 },
-  { pos: 4, nome: 'Mariana', pontos: 265 },
-  { pos: 5, nome: 'Pedro', pontos: 201 },
-];
-
 function codigoParaEmoji(codigo) {
   if (!codigo) return '🏳️';
   return codigo
@@ -37,9 +24,15 @@ function formatarData(dataHora) {
 export default function Dashboard() {
   const [menuAberto, setMenuAberto] = useState(false);
   const [proximosJogos, setProximosJogos] = useState([]);
+  const [ranking, setRanking] = useState([]);
+  const [pontuacao, setPontuacao] = useState(0);
   const navigate = useNavigate();
 
+  const usuarioId = localStorage.getItem('usuarioId');
+  const username = localStorage.getItem('username');
+
   useEffect(() => {
+    // Próximos jogos
     api.get('/jogos')
       .then((res) => {
         const agora = new Date();
@@ -50,7 +43,21 @@ export default function Dashboard() {
         setProximosJogos(futuros);
       })
       .catch(() => setProximosJogos([]));
+
+    // Ranking geral
+    api.get('/usuarios/ranking')
+      .then((res) => {
+        setRanking(res.data);
+        const eu = res.data.find((r) => String(r.usuarioId) === String(usuarioId));
+        if (eu) setPontuacao(eu.pontos ?? 0);
+      })
+      .catch(() => setRanking([]));
   }, []);
+
+  function sair() {
+    localStorage.clear();
+    navigate('/');
+  }
 
   return (
     <div className="dash-root">
@@ -62,12 +69,11 @@ export default function Dashboard() {
           <button className="dash-nav-btn dash-nav-btn--destaque" onClick={() => navigate('/boloes/criar')}>+ Criar bolão</button>
           <button className="dash-nav-btn" onClick={() => navigate('/boloes/entrar')}>Entrar em bolão</button>
           <button className="dash-nav-btn" onClick={() => navigate('/boloes/meus')}>Meus bolões</button>
-          <button className="dash-nav-btn">Adicionar amigo</button>
         </nav>
 
         <div className="dash-nav-usuario" onClick={() => setMenuAberto(!menuAberto)}>
-          <div className="dash-avatar">{usuario.username[0].toUpperCase()}</div>
-          <span className="dash-nav-username">@{usuario.username}</span>
+          <div className="dash-avatar">{username?.[0]?.toUpperCase()}</div>
+          <span className="dash-nav-username">@{username}</span>
           <span className="dash-nav-caret">▾</span>
 
           {menuAberto && (
@@ -75,7 +81,7 @@ export default function Dashboard() {
               <a href="/perfil" className="dash-dropdown-item">Meu perfil</a>
               <a href="/configuracoes" className="dash-dropdown-item">Configurações</a>
               <div className="dash-dropdown-divider" />
-              <a href="/" className="dash-dropdown-item dash-dropdown-item--sair">Sair</a>
+              <button className="dash-dropdown-item dash-dropdown-item--sair" onClick={sair}>Sair</button>
             </div>
           )}
         </div>
@@ -87,27 +93,31 @@ export default function Dashboard() {
         {/* PONTUAÇÃO DO USUÁRIO */}
         <section className="dash-card dash-pontuacao">
           <p className="dash-label">Sua pontuação</p>
-          <div className="dash-pontos-valor">{usuario.pontuacao}</div>
+          <div className="dash-pontos-valor">{pontuacao}</div>
           <p className="dash-pontos-sub">pontos acumulados</p>
         </section>
 
         {/* RANKING */}
         <section className="dash-card dash-ranking">
-          <h2 className="dash-card-titulo">Ranking de amigos</h2>
-          <ul className="dash-ranking-lista">
-            {ranking.map((item) => (
-              <li
-                key={item.pos}
-                className={`dash-ranking-item ${item.nome.toLowerCase() === usuario.username ? 'dash-ranking-item--eu' : ''}`}
-              >
-                <span className={`dash-ranking-pos ${item.pos === 1 ? 'dash-ranking-pos--ouro' : item.pos === 2 ? 'dash-ranking-pos--prata' : item.pos === 3 ? 'dash-ranking-pos--bronze' : ''}`}>
-                  {item.pos === 1 ? '🥇' : item.pos === 2 ? '🥈' : item.pos === 3 ? '🥉' : `#${item.pos}`}
-                </span>
-                <span className="dash-ranking-nome">{item.nome}</span>
-                <span className="dash-ranking-pontos">{item.pontos} pts</span>
-              </li>
-            ))}
-          </ul>
+          <h2 className="dash-card-titulo">Ranking geral</h2>
+          {ranking.length === 0 ? (
+            <p className="dash-jogos-vazio">Nenhum palpite pontuado ainda.</p>
+          ) : (
+            <ul className="dash-ranking-lista">
+              {ranking.map((item, idx) => (
+                <li
+                  key={item.usuarioId}
+                  className={`dash-ranking-item ${String(item.usuarioId) === String(usuarioId) ? 'dash-ranking-item--eu' : ''}`}
+                >
+                  <span className={`dash-ranking-pos ${idx === 0 ? 'dash-ranking-pos--ouro' : idx === 1 ? 'dash-ranking-pos--prata' : idx === 2 ? 'dash-ranking-pos--bronze' : ''}`}>
+                    {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
+                  </span>
+                  <span className="dash-ranking-nome">{item.username}</span>
+                  <span className="dash-ranking-pontos">{item.pontos ?? 0} pts</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
 
         {/* PRÓXIMOS JOGOS */}
@@ -119,14 +129,18 @@ export default function Dashboard() {
             <ul className="dash-jogos-lista">
               {proximosJogos.map((jogo) => {
                 const { data, hora } = formatarData(jogo.dataHora);
-                const emojicasa = codigoParaEmoji(jogo.selecaoCasa?.codigoSelecao);
-                const emojiVisitante = codigoParaEmoji(jogo.selecaoVisitante?.codigoSelecao);
                 return (
                   <li key={jogo.id} className="dash-jogo-item">
                     <div className="dash-jogo-times">
-                      <span className="dash-jogo-time">{emojicasa} {jogo.selecaoCasa?.nome}</span>
+                      <span className="dash-jogo-time">
+                        <img src={jogo.selecaoCasa?.bandeira} alt={jogo.selecaoCasa?.codigoSelecao} className="dash-bandeira" />
+                        {jogo.selecaoCasa?.codigoSelecao}
+                      </span>
                       <span className="dash-jogo-vs">vs</span>
-                      <span className="dash-jogo-time">{emojiVisitante} {jogo.selecaoVisitante?.nome}</span>
+                      <span className="dash-jogo-time">
+                        <img src={jogo.selecaoVisitante?.bandeira} alt={jogo.selecaoVisitante?.codigoSelecao} className="dash-bandeira" />
+                        {jogo.selecaoVisitante?.codigoSelecao}
+                      </span>
                     </div>
                     <div className="dash-jogo-info">
                       <span>{data}</span>

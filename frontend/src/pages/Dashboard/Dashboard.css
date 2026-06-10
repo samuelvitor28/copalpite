@@ -354,3 +354,28 @@ html, body, #root {
   font-weight: 600 !important;
   color: #00c864 !important;
 }
+
+.dash-bandeira {
+  width: 24px;
+  height: 17px;
+  object-fit: cover;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.dash-dropdown-item--sair.dash-dropdown-item {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #ff4d4d;
+}
+
+.dash-dropdown-item--sair.dash-dropdown-item:hover {
+  background: rgba(255, 77, 77, 0.08);
+  color: #ff4d4d;
+}
