@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap');
 
+
 /* ── HEADER ── */
 .bp-voltar {
   background: none;
@@ -160,7 +161,7 @@
   border-radius: 8px;
   outline: none;
   transition: border-color 0.15s, background 0.15s;
-  -moz-appearance: textfield;
+
 }
 
 .bp-input-gol::-webkit-outer-spin-button,
@@ -323,3 +324,48 @@
 
 .bp-ranking-nome { flex: 1; font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.8); }
 .bp-ranking-pontos { font-size: 13px; font-weight: 600; color: #00c864; }
+
+/* ── RODADA TABS ── */
+.bp-rodada-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.bp-rodada-tab {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.bp-rodada-tab:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.bp-rodada-tab--ativo {
+  background: rgba(0, 200, 100, 0.12);
+  border-color: rgba(0, 200, 100, 0.45);
+  color: #00c864;
+}
+
+.bp-grupo {
+  margin-bottom: 40px; /* distância entre os grupos */
+}
+
+.bp-grupo-titulo {
+  margin-bottom: 16px; /* distância entre o título e os jogos */
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: #00c864;
+}

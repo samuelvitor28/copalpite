@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import Navbar from '../../components/Navbar/Navbar';
 import './BolaoPagina.css';
+import '../../index.css';
 
 const USUARIO_ID = 1; // trocar quando tiver JWT
 
@@ -230,7 +231,8 @@ export default function BolaoPagina() {
                                       className="bp-input-gol"
                                       type="number"
                                       min="0"
-                                      value={p.golsCasa}
+                                      value={p.golsCasa === '' ? '' : p.golsCasa}
+                                      placeholder="0"
                                       onChange={(e) => handleInput(jogo.id, 'golsCasa', e.target.value)}
                                     />
                                     <span className="bp-input-sep">×</span>
@@ -238,7 +240,8 @@ export default function BolaoPagina() {
                                       className="bp-input-gol"
                                       type="number"
                                       min="0"
-                                      value={p.golsVisitante}
+                                      value={p.golsVisitante === '' ? '' : p.golsVisitante}
+                                      placeholder="0"
                                       onChange={(e) => handleInput(jogo.id, 'golsVisitante', e.target.value)}
                                     />
                                   </div>
