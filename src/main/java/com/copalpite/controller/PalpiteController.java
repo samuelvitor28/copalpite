@@ -36,4 +36,9 @@ public class PalpiteController {
             @PathVariable Long jogoId) {
         return ResponseEntity.ok(palpiteService.listarPorBolaoEJogo(bolaoId, jogoId));
     }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<PalpiteRespostaDTO>> listarPorUsuario(@PathVariable Long usuarioId) {
+        return ResponseEntity.ok(palpiteService.listarPorUsuario(usuarioId));
+    }
 }

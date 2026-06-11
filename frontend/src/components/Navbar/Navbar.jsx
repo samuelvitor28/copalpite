@@ -38,7 +38,6 @@ export default function Navbar() {
         {menuAberto && (
           <div className="dash-dropdown">
             <a href="/perfil" className="dash-dropdown-item">Meu perfil</a>
-            <a href="/configuracoes" className="dash-dropdown-item">Configurações</a>
             <div className="dash-dropdown-divider" />
             <button className="dash-dropdown-item dash-dropdown-item--sair" onClick={sair}>Sair</button>
           </div>

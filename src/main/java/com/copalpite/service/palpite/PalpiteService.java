@@ -10,4 +10,5 @@ public interface PalpiteService {
     List<PalpiteRespostaDTO> listarPorBolaoEUsuario(Long bolaoId, Long usuarioId);
     List<PalpiteRespostaDTO> listarPorBolaoEJogo(Long bolaoId, Long jogoId);
     void recalcularPontuacao(Long jogoId);
+    List<PalpiteRespostaDTO> listarPorUsuario(Long usuarioId);
 }

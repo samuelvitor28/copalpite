@@ -22,7 +22,8 @@ export default function CriarBolao() {
     setLoading(true);
     setErro('');
     try {
-      const res = await api.post('/boloes', {...form, donoId: 1});
+      const donoId = Number(localStorage.getItem('usuarioId')); // ← era 'usuario'
+      const res = await api.post('/boloes', { ...form, donoId });
       navigate(`/boloes/${res.data.id}`);
     } catch {
       setErro('Erro ao criar bolão. Tente novamente.');

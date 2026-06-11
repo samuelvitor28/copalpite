@@ -74,10 +74,10 @@ export default function BolaoPagina() {
     async function carregar() {
       try {
         const [bolaoRes, jogosRes, palpitesRes, rankingRes] = await Promise.all([
-          api.get(`/bolaos/${id}`),
+          api.get(`/boloes/${id}`),
           api.get('/jogos'),
           api.get(`/palpites/bolao/${id}/usuario/${USUARIO_ID}`),
-          api.get(`/bolaos/${id}/ranking`),
+          api.get(`/boloes/${id}/ranking`),
         ]);
 
         setBolao(bolaoRes.data);
@@ -237,7 +237,7 @@ export default function BolaoPagina() {
                                       type="number"
                                       min="0"
                                       value={p.golsCasa === '' ? '' : p.golsCasa}
-                                      placeholder="0"
+                                      placeholder="--"
                                       onChange={(e) => handleInput(jogo.id, 'golsCasa', e.target.value)}
                                     />
                                     <span className="bp-input-sep">×</span>
@@ -246,7 +246,7 @@ export default function BolaoPagina() {
                                       type="number"
                                       min="0"
                                       value={p.golsVisitante === '' ? '' : p.golsVisitante}
-                                      placeholder="0"
+                                      placeholder="--"
                                       onChange={(e) => handleInput(jogo.id, 'golsVisitante', e.target.value)}
                                     />
                                   </div>
@@ -293,11 +293,11 @@ export default function BolaoPagina() {
             {ranking.length === 0 && <p className="bp-estado">Nenhum palpite ainda.</p>}
             <ul className="bp-ranking-lista">
               {ranking.map((item, idx) => (
-                <li key={item.usuarioId ?? idx} className={`bp-ranking-item ${item.usuarioId === USUARIO_ID ? 'bp-ranking-item--eu' : ''}`} >
+                <li key={item.usuarioId ?? idx} className={`bp-ranking-item ${item.id === USUARIO_ID ? 'bp-ranking-item--eu' : ''}`} >
                   <span className={`bp-ranking-pos ${idx === 0 ? 'ouro' : idx === 1 ? 'prata' : idx === 2 ? 'bronze' : ''}`}>
                     {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
                   </span>
-                  <span className="bp-ranking-nome">{item.usernameUsuario}</span>
+                  <span className="bp-ranking-nome">{item.username}</span>
                   <span className="bp-ranking-pontos">{item.pontos ?? 0} pts</span>
                 </li>
               ))}

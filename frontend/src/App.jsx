@@ -6,6 +6,7 @@ import CriarBolao from './pages/CriarBolao/CriarBolao';
 import EntrarBolao from './pages/EntrarBolao/EntrarBolao';
 import MeusBoloes from './pages/MeusBoloes/MeusBoloes';
 import BolaoPagina from './pages/BolaoPagina/BolaoPagina';
+import Perfil from './pages/Perfil/Perfil';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/boloes/entrar" element={<EntrarBolao />} />
         <Route path="/boloes/meus" element={<MeusBoloes />} />
         <Route path="/boloes/:id" element={<BolaoPagina />} />
+       <Route path="/perfil" element={<Perfil />} />
       </Routes>
     </BrowserRouter>
   );

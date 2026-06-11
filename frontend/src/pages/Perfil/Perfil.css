@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap');
+
+/* ── ROOT ── */
+.perfil-root {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+/* ── HEADER ── */
+.perfil-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.perfil-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #00c864;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #000;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(0, 200, 100, 0.2);
+}
+
+.perfil-header-info h1 {
+  margin: 0 0 0.15rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  line-height: 1;
+  color: #fff;
+}
+
+.perfil-header-info p {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── STATS ── */
+.perfil-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.perfil-stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+  transition: border-color 0.15s;
+}
+
+.perfil-stat-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.perfil-stat-valor {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.perfil-stat-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'DM Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.perfil-stat-sub {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.2);
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 0.1rem;
+}
+
+/* ── SEÇÃO TÍTULO ── */
+.perfil-secao-titulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: #00c864;
+  margin: 0 0 16px;
+}
+
+/* ── LISTA ── */
+.perfil-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.perfil-palpite-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid transparent;
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.perfil-palpite-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.perfil-palpite-card--exato    { border-left-color: #00c864; }
+.perfil-palpite-card--vencedor { border-left-color: #f5c518; }
+.perfil-palpite-card--erro     { border-left-color: rgba(255, 77, 77, 0.6); }
+.perfil-palpite-card--pendente { border-left-color: rgba(255, 255, 255, 0.1); }
+
+.perfil-palpite-jogo {
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  flex: 1;
+  min-width: 160px;
+}
+
+.perfil-palpite-placar {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ── BADGES ── */
+.perfil-badge {
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.perfil-badge--exato    { background: rgba(0, 200, 100, 0.12);  color: #00c864; border: 1px solid rgba(0, 200, 100, 0.25); }
+.perfil-badge--vencedor { background: rgba(245, 197, 24, 0.12); color: #f5c518; border: 1px solid rgba(245, 197, 24, 0.25); }
+.perfil-badge--erro     { background: rgba(255, 77, 77, 0.1);   color: #ff6b6b; border: 1px solid rgba(255, 77, 77, 0.2); }
+.perfil-badge--pendente { background: rgba(255, 255, 255, 0.04); color: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.08); }
+
+/* ── PAGINAÇÃO ── */
+.perfil-paginacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.perfil-pag-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.perfil-pag-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.perfil-pag-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.perfil-pag-paginas {
+  display: flex;
+  gap: 4px;
+}
+
+.perfil-pag-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.perfil-pag-num:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
+
+.perfil-pag-num--ativo {
+  background: rgba(0, 200, 100, 0.15);
+  border-color: rgba(0, 200, 100, 0.4);
+  color: #00c864;
+}
+
+/* ── VAZIO / ESTADOS ── */
+.perfil-vazio {
+  text-align: center;
+  padding: 3.5rem 0;
+  color: rgba(255, 255, 255, 0.25);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+}
+
+.perfil-vazio-icone {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.perfil-estado { font-size: 14px; color: rgba(255, 255, 255, 0.35); font-family: 'DM Sans', sans-serif; }
+.perfil-estado--erro { color: #ff4d4d; }
+
+/* ── RESPONSIVO ── */
+@media (max-width: 480px) {
+  .perfil-stats { grid-template-columns: repeat(2, 1fr); }
+  .perfil-palpite-jogo { width: 100%; flex: unset; }
+}

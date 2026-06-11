@@ -2,7 +2,9 @@ package com.copalpite.service.bolao;
 
 import com.copalpite.dto.*;
 import com.copalpite.entity.Bolao;
+import com.copalpite.entity.BolaoParticipante;
 import com.copalpite.entity.Usuario;
+import com.copalpite.repository.BolaoParticipanteRepository;
 import com.copalpite.repository.BolaoRepository;
 import com.copalpite.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,6 +22,7 @@ public class BolaoServiceImpl implements BolaoService {
 
     private final BolaoRepository bolaoRepository;
     private final UsuarioRepository usuarioRepository;
+    private final BolaoParticipanteRepository bolaoParticipanteRepository;
 
     @Override
     @Transactional
@@ -32,7 +35,13 @@ public class BolaoServiceImpl implements BolaoService {
         bolao.setDono(dono);
         bolao.setCodigoConvite(gerarCodigo());
 
-        return toDTO(bolaoRepository.save(bolao));
+        Bolao salvo = bolaoRepository.save(bolao);
+        BolaoParticipante participante = new BolaoParticipante();
+        participante.setBolao(salvo);
+        participante.setUsuario(dono);
+        participante.setPontuacao(0);
+        bolaoParticipanteRepository.save(participante);
+        return toDTO(salvo);
     }
 
     @Override

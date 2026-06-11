@@ -14,6 +14,7 @@ public interface PalpiteRepository extends JpaRepository<Palpite, Long> {
     List<Palpite> findByBolaoIdAndUsuarioId(Long bolaoId, Long usuarioId);
     List<Palpite> findByBolaoIdAndJogoId(Long bolaoId, Long jogoId);
     List<Palpite> findByJogoId(Long jogoId);
+    List<Palpite> findByUsuarioId(Long usuarioId);
     @Query("SELECT p.usuario.id, p.usuario.username, SUM(p.pontos) as total " +
             "FROM Palpite p WHERE p.pontos IS NOT NULL " +
             "GROUP BY p.usuario.id, p.usuario.username " +
